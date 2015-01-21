@@ -318,10 +318,21 @@ int main(void)
 	static uint32_t lasttime = 0;
 	uint32_t time_since_last_sonar_update= 0;
 
+	// ---------------------------------------------------------------------------------------------------
+	// float fTeste = 0;
+	// uint32_t iTeste = 0;
+	// ---------------------------------------------------------------------------------------------------
+
 
 	/* main loop */
 	while (1)
 	{
+		// ---------------------------------------------------------------------------------------------------
+		mavlink_msg_named_value_float_send(MAVLINK_COMM_2, 0, "Seno", sin(counter / 180.0));
+		// mavlink_msg_named_value_int_send(MAVLINK_COMM_2, 0, "Pow", pow(-1, (counter * 180)%2));
+		mavlink_msg_named_value_float_send(MAVLINK_COMM_2, 0, "Pow", pow(-1, (counter / 360) + 1));
+		// ---------------------------------------------------------------------------------------------------
+
 		/* reset flow buffers if needed */
 		if(buffer_reset_needed)
 		{
